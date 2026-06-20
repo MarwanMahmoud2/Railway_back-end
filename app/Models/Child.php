@@ -51,11 +51,26 @@ class Child extends Model
 
     private static function generateUniqueId(): string
     {
-        do {
-            $id = 'NBIS-' . strtoupper(Str::random(6));
-        } while (static::where('child_id', $id)->exists());
-
-        return $id;
+        // Get the count of existing children to determine the sequence
+        $count = static::count();
+        
+        // Generate a random 7-digit number
+        // Use count as offset to ensure uniqueness while maintaining randomness
+        $baseNumber = 1000000 + ($count * 7); // Spacing to reduce collision probability
+        
+        // Add random offset (0-6) for variety
+        $randomOffset = random_int(0, 6);
+        $newId = $baseNumber + $randomOffset;
+        
+        // Verify uniqueness (fallback check)
+        $attempts = 0;
+        while (static::where('child_id', str_pad((string)$newId, 7, '0', STR_PAD_LEFT))->exists() && $attempts < 100) {
+            $newId = 1000000 + random_int(0, 8999999);
+            $attempts++;
+        }
+        
+        // Ensure it's always 7 digits
+        return str_pad((string)$newId, 7, '0', STR_PAD_LEFT);
     }
 
     /**
