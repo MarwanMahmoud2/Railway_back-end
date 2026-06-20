@@ -80,6 +80,8 @@ return [
                 PDO::ATTR_PERSISTENT => false,
                 PDO::ATTR_TIMEOUT => 30,
                 PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+                // Force IPv4 connection
+                PDO::PGSQL_ATTR_DISABLE_PREPARES => 0,
             ],
         ],
 
