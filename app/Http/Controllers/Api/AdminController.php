@@ -72,7 +72,7 @@ class AdminController extends Controller
                     'date_found' => $child->date_found,
                     'notes' => $child->notes,
                     'status' => $child->status,
-                    'created_at' => $child->created_at->format('Y-m-d'),
+                    'created_at' => $child->created_at ? $child->created_at->format('Y-m-d') : null,
                     'child_photo_path' => $child->child_photo_path,
                     'footprint_path' => $child->footprint_path,
                     'parent' => $child->parent ? [
@@ -322,7 +322,7 @@ class AdminController extends Controller
                 'status' => $child->status,
                 'parent_email' => $child->parent_email,
                 'is_linked' => $child->is_linked,
-                'created_at' => $child->created_at->diffForHumans(),
+                'created_at' => $child->created_at ? $child->created_at->diffForHumans() : null,
                 'child_photo_path' => $child->child_photo_path,
                 'footprint_path' => $child->footprint_path,
                 'parent' => $child->parent ? [

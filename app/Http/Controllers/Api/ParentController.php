@@ -114,12 +114,12 @@ class ParentController extends Controller
                     'child_id'           => $report->child->id ?? 'Unknown',
                     'type'               => 'Missing Child',
                     'status'             => $status,
-                    'date'               => $report->created_at->format('F Y'),
+                    'date'               => $report->created_at ? $report->created_at->format('F Y') : null,
                     'avatar'             => $report->child->name ? strtoupper(substr($report->child->name, 0, 1)) : 'U',
                     'notes'              => $report->notes,
                     'last_seen_location' => $report->last_seen_location,
                     'last_seen_date'     => $report->last_seen_date,
-                    'created_at'         => $report->created_at->toIso8601String(),
+                    'created_at'         => $report->created_at ? $report->created_at->toIso8601String() : null,
                 ];
             });
 

@@ -64,7 +64,7 @@ class ChildController extends Controller
                 'status' => $child->status,
                 'parent_email' => $child->parent_email,
                 'is_linked' => $child->is_linked,
-                'created_at' => $child->created_at->diffForHumans(),
+                'created_at' => $child->created_at ? $child->created_at->diffForHumans() : null,
                 'child_photo_path' => $child->child_photo_path,
                 'footprint_path' => $child->footprint_path,
                 'parent' => $child->parent ? [
@@ -106,7 +106,7 @@ class ChildController extends Controller
                 'status' => $child->status,
                 'parent_email' => $child->parent_email,
                 'is_linked' => $child->is_linked,
-                'created_at' => $child->created_at->diffForHumans(),
+                'created_at' => $child->created_at ? $child->created_at->diffForHumans() : null,
                 'child_photo_path' => $child->child_photo_path,
                 'footprint_path' => $child->footprint_path,
                 'parent' => $child->parent ? [
